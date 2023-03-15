@@ -6,7 +6,7 @@
 #    By: mhaan <mhaan@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/03/02 15:18:58 by mhaan         #+#    #+#                  #
-#    Updated: 2023/03/15 12:04:43 by mhaan         ########   odam.nl          #
+#    Updated: 2023/03/15 12:58:02 by mhaan         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,15 +42,24 @@ GNL_DIR			:=	./get_next_line
 GNL_SRC_DIR		:=	$(GNL_DIR)
 GNL_SRC			:=	get_next_line_bonus.c get_next_line_utils_bonus.c
 
+SRC				:=	$(addprefix $(LIBFT_SRC_DIR)/, $(LIBFT_SRC)) \
+					$(addprefix $(PRINTF_SRC_DIR)/, $(PRINTF_SRC)) \
+					$(addprefix $(GNL_SRC_DIR)/, $(GNL_SRC))
+
+
 # Object files and directories:
-LIBFT_OBJ_DIR :=	./libft/obj
-LIBFT_OBJS :=		$(addprefix $(LIBFT_OBJ_DIR)/,$(notdir $(LIBFT_SRC:.c=.o)))
+OBJ_DIR			:=		./obj
 
-PRINTF_OBJ_DIR :=	./ft_printf/obj
-PRINTF_OBJS :=		$(addprefix $(PRINTF_OBJ_DIR)/,$(notdir $(PRINTF_SRC:.c=.o)))
+# LIBFT_OBJ_DIR :=		./libft/obj
+LIBFT_OBJS		:=		$(addprefix $(OBJ_DIR)/,$(notdir $(LIBFT_SRC:.c=.o)))
 
-GNL_OBJ_DIR := 		./get_next_line/obj
-GNL_OBJS :=			$(addprefix $(GNL_OBJ_DIR)/,$(notdir $(GNL_SRC:.c=.o)))
+# PRINTF_OBJ_DIR :=	.	/ft_printf/obj
+PRINTF_OBJS 	:=		$(addprefix $(OBJ_DIR)/,$(notdir $(PRINTF_SRC:.c=.o)))
+
+# GNL_OBJ_DIR	:= 		./get_next_line/obj
+GNL_OBJS		:=		$(addprefix $(OBJ_DIR)/,$(notdir $(GNL_SRC:.c=.o)))
+
+OBJ				:=		$(LIBFT_OBJS) $(PRINTF_OBJS) $(GNL_OBJS)
 
 # Archive files and directories:
 LIBFT_AR :=			$(LIBFT_DIR)/libft.a
@@ -62,6 +71,7 @@ clean:
 		$(RM) $(LIBFT_OBJ_DIR)
 		$(RM) $(PRINTF_OBJ_DIR)
 		$(RM) $(GNL_OBJ_DIR)
+		$(RM) $(OBJ)
 
 fclean: clean
 		$(RM) $(NAME)
@@ -72,14 +82,21 @@ re:
 		@$(MAKE) all
 
 #RULES:
-$(NAME): $(LIBFT_AR) $(PRINTF_OBJS) $(GNL_OBJS)
-		$(AR) $(NAME) $(PRINTF_OBJS) $(GNL_OBJS)
+# $(NAME): $(LIBFT_AR) $(PRINTF_OBJS) $(GNL_OBJS)
+# $(AR) $(NAME) $(PRINTF_OBJS) $(GNL_OBJS)
+$(NAME) : $(OBJ)
+	$(AR) $(NAME) $(OBJ)
 
-$(LIBFT_AR):
+$(LIBFT_AR): $(NAME)
 		@$(MAKE) bonus -j -C libft
 		mv $(LIBFT_AR) ./$(NAME)
 
-$(PRINTF_OBJ_DIR)/%.o: $(PRINTF_SRC_DIR)/%.c $(INC_FILES)
+# $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INC_FILES)
+$(OBJ_DIR)/%.o: $(SRC) $(INC_FILES)
+		@mkdir -p $(OBJ_DIR)
+		gcc $(CFLAGS) $(INCLUDES) -c -o $@ $<
+
+$(OBJ_DIR)/%.o: $(PRINTF_SRC_DIR)/%.c $(INC_FILES)
 		@mkdir -p $(PRINTF_OBJ_DIR)
 		gcc $(CFLAGS) $(INCLUDES) -c -o $@ $<
 
