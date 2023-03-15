@@ -6,7 +6,7 @@
 #    By: mhaan <mhaan@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/03/02 15:18:58 by mhaan         #+#    #+#                  #
-#    Updated: 2023/03/15 12:58:02 by mhaan         ########   odam.nl          #
+#    Updated: 2023/03/15 14:51:17 by mhaan         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,9 @@ CFLAGS ?= -Wall -Wextra -Werror
 AR := ar -crs
 
 # Include files and directories:
-INC_DIRS := ./ft_printf/includes ./libft ./get_next_line
+INC_DIRS := ./includes
 INCLUDES := $(foreach D,$(INC_DIRS),-I$(D))
-INC_FILES := libft/libft.h ft_printf/includes/ft_printf.h get_next_line/get_next_line.h
+INC_FILES := includes/libft.h includes/ft_printf.h includes/get_next_line_bonus.h
 
 # Source files and directories:
 LIBFT_DIR := 		./libft
