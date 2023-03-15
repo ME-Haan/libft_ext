@@ -6,7 +6,7 @@
 #    By: mhaan <mhaan@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/03/02 15:18:58 by mhaan         #+#    #+#                  #
-#    Updated: 2023/03/09 15:10:28 by mhaan         ########   odam.nl          #
+#    Updated: 2023/03/15 12:04:43 by mhaan         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,18 +73,20 @@ re:
 
 #RULES:
 $(NAME): $(LIBFT_AR) $(PRINTF_OBJS) $(GNL_OBJS)
-		$(AR) $(NAME) $(LIBFT_AR) $(PRINTF_OBJS) $(GNL_OBJS)
+		$(AR) $(NAME) $(PRINTF_OBJS) $(GNL_OBJS)
 
 $(LIBFT_AR):
 		@$(MAKE) bonus -j -C libft
+		mv $(LIBFT_AR) ./$(NAME)
 
 $(PRINTF_OBJ_DIR)/%.o: $(PRINTF_SRC_DIR)/%.c $(INC_FILES)
 		@mkdir -p $(PRINTF_OBJ_DIR)
-		$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $<
+		gcc $(CFLAGS) $(INCLUDES) -c -o $@ $<
+
 
 $(GNL_OBJ_DIR)/%.o: $(GNL_SRC_DIR)/%.c $(INC_FILES)
 		@mkdir -p $(GNL_OBJ_DIR)
-		$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $<
+		gcc $(CFLAGS) $(INCLUDES) -c -o $@ $<
 
 #OTHER:
 .PHONY:
