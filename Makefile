@@ -6,7 +6,7 @@
 #    By: mhaan <mhaan@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/03/02 15:18:58 by mhaan         #+#    #+#                  #
-#    Updated: 2023/03/16 10:38:11 by mhaan         ########   odam.nl          #
+#    Updated: 2023/03/16 11:37:30 by mhaan         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,6 @@ GNL_SRC			:=	get_next_line_bonus.c get_next_line_utils_bonus.c
 SRC				:=	$(addprefix $(LIBFT_SRC_DIR)/, $(LIBFT_SRC)) \
 					$(addprefix $(PRINTF_SRC_DIR)/, $(PRINTF_SRC)) \
 					$(addprefix $(GNL_SRC_DIR)/, $(GNL_SRC))
-
 
 # Object files and directories:
 OBJ_DIR			:=		./obj
