@@ -6,7 +6,7 @@
 #    By: mhaan <mhaan@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/03/02 15:18:58 by mhaan         #+#    #+#                  #
-#    Updated: 2023/03/15 14:51:17 by mhaan         ########   odam.nl          #
+#    Updated: 2023/03/16 10:38:11 by mhaan         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,29 +49,19 @@ SRC				:=	$(addprefix $(LIBFT_SRC_DIR)/, $(LIBFT_SRC)) \
 
 # Object files and directories:
 OBJ_DIR			:=		./obj
-
-# LIBFT_OBJ_DIR :=		./libft/obj
 LIBFT_OBJS		:=		$(addprefix $(OBJ_DIR)/,$(notdir $(LIBFT_SRC:.c=.o)))
-
-# PRINTF_OBJ_DIR :=	.	/ft_printf/obj
 PRINTF_OBJS 	:=		$(addprefix $(OBJ_DIR)/,$(notdir $(PRINTF_SRC:.c=.o)))
-
-# GNL_OBJ_DIR	:= 		./get_next_line/obj
 GNL_OBJS		:=		$(addprefix $(OBJ_DIR)/,$(notdir $(GNL_SRC:.c=.o)))
-
 OBJ				:=		$(LIBFT_OBJS) $(PRINTF_OBJS) $(GNL_OBJS)
 
 # Archive files and directories:
-LIBFT_AR :=			$(LIBFT_DIR)/libft.a
+LIBFT_AR		:=		$(LIBFT_DIR)/libft.a
 
 #RECIPES:
 all:	$(NAME)
 
 clean:
-		$(RM) $(LIBFT_OBJ_DIR)
-		$(RM) $(PRINTF_OBJ_DIR)
-		$(RM) $(GNL_OBJ_DIR)
-		$(RM) $(OBJ)
+		$(RM) $(OBJ_DIR)
 
 fclean: clean
 		$(RM) $(NAME)
@@ -82,27 +72,24 @@ re:
 		@$(MAKE) all
 
 #RULES:
-# $(NAME): $(LIBFT_AR) $(PRINTF_OBJS) $(GNL_OBJS)
-# $(AR) $(NAME) $(PRINTF_OBJS) $(GNL_OBJS)
-$(NAME) : $(OBJ)
-	$(AR) $(NAME) $(OBJ)
+$(NAME) : $(LIBFT_OBJS) $(PRINTF_OBJS) $(GNL_OBJS)
+		$(AR) $(NAME) $^
 
 $(LIBFT_AR): $(NAME)
 		@$(MAKE) bonus -j -C libft
 		mv $(LIBFT_AR) ./$(NAME)
 
-# $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INC_FILES)
-$(OBJ_DIR)/%.o: $(SRC) $(INC_FILES)
+$(OBJ_DIR)/%.o: $(LIBFT_DIR)/%.c $(INC_FILES)
 		@mkdir -p $(OBJ_DIR)
 		gcc $(CFLAGS) $(INCLUDES) -c -o $@ $<
 
 $(OBJ_DIR)/%.o: $(PRINTF_SRC_DIR)/%.c $(INC_FILES)
-		@mkdir -p $(PRINTF_OBJ_DIR)
+		@mkdir -p $(OBJ_DIR)
 		gcc $(CFLAGS) $(INCLUDES) -c -o $@ $<
 
 
-$(GNL_OBJ_DIR)/%.o: $(GNL_SRC_DIR)/%.c $(INC_FILES)
-		@mkdir -p $(GNL_OBJ_DIR)
+$(OBJ_DIR)/%.o: $(GNL_SRC_DIR)/%.c $(INC_FILES)
+		@mkdir -p $(OBJ_DIR)
 		gcc $(CFLAGS) $(INCLUDES) -c -o $@ $<
 
 #OTHER:
