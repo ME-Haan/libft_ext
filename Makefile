@@ -6,7 +6,7 @@
 #    By: mhaan <mhaan@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/03/02 15:18:58 by mhaan         #+#    #+#                  #
-#    Updated: 2023/03/16 10:38:11 by mhaan         ########   odam.nl          #
+#    Updated: 2023/04/04 13:33:11 by mhaan         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,14 +48,14 @@ SRC				:=	$(addprefix $(LIBFT_SRC_DIR)/, $(LIBFT_SRC)) \
 
 
 # Object files and directories:
-OBJ_DIR			:=		./obj
-LIBFT_OBJS		:=		$(addprefix $(OBJ_DIR)/,$(notdir $(LIBFT_SRC:.c=.o)))
-PRINTF_OBJS 	:=		$(addprefix $(OBJ_DIR)/,$(notdir $(PRINTF_SRC:.c=.o)))
-GNL_OBJS		:=		$(addprefix $(OBJ_DIR)/,$(notdir $(GNL_SRC:.c=.o)))
-OBJ				:=		$(LIBFT_OBJS) $(PRINTF_OBJS) $(GNL_OBJS)
+OBJ_DIR			:=	./obj
+LIBFT_OBJS		:=	$(addprefix $(OBJ_DIR)/,$(notdir $(LIBFT_SRC:.c=.o)))
+PRINTF_OBJS 	:=	$(addprefix $(OBJ_DIR)/,$(notdir $(PRINTF_SRC:.c=.o)))
+GNL_OBJS		:=	$(addprefix $(OBJ_DIR)/,$(notdir $(GNL_SRC:.c=.o)))
+OBJ				:=	$(LIBFT_OBJS) $(PRINTF_OBJS) $(GNL_OBJS)
 
 # Archive files and directories:
-LIBFT_AR		:=		$(LIBFT_DIR)/libft.a
+LIBFT_AR		:=	$(LIBFT_DIR)/libft.a
 
 #RECIPES:
 all:	$(NAME)
