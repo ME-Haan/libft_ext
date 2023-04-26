@@ -6,7 +6,7 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/06 14:57:19 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/01/31 17:17:13 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/04/26 11:41:51 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 int		ft_tolower(int c);
 int		ft_toupper(int c);
+
+// My funcs:
+int		ft_abs(int i);
 
 #endif
