@@ -6,7 +6,7 @@
 #    By: mhaan <mhaan@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/03/02 15:18:58 by mhaan         #+#    #+#                  #
-#    Updated: 2023/05/08 13:22:24 by mhaan         ########   odam.nl          #
+#    Updated: 2023/05/18 13:43:34 by mhaan         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,7 +92,7 @@ $(OBJ_DIR)/%.o: $(PRINTF_SRC_DIR)/%.c $(INC_FILES)
 
 $(OBJ_DIR)/%.o: $(GNL_SRC_DIR)/%.c $(INC_FILES)
 		@mkdir -p $(OBJ_DIR)
-		gcc $(CFLAGS) $(INCLUDES) -c -o $@ $<
+		gcc $(CFLAGS) $(INCLUDES) -c -D BUFFER_SIZE=10000 -o $@ $<
 
 #OTHER:
 .PHONY:
