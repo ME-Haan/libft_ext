@@ -16,8 +16,7 @@
 // includes
 # include "libft.h"
 # include <stdarg.h>
-# include <unistd.h>
-# include <stdlib.h>
+# include <stdint.h>
 
 // prototypes
 int	ft_printf(const char *fmt, ...);
