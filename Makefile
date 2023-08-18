@@ -6,7 +6,7 @@
 #    By: mhaan <mhaan@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/03/02 15:18:58 by mhaan         #+#    #+#                  #
-#    Updated: 2023/05/18 13:43:34 by mhaan         ########   odam.nl          #
+#    Updated: 2023/08/18 14:43:54 by mhaan         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,12 @@ NAME := libft_ext.a
 RM := /bin/rm -rf
 
 #COMPILATION VARIABLES:
-CFLAGS ?= -Wall -Wextra -Werror
 AR := ar -crs
+CFLAGS ?= -Wall -Wextra -Werror
+
+ifdef OPTIM
+	CFLAGS += -O2 -flto -march=native
+endif
 
 # Include files and directories:
 INC_DIRS := ./includes
@@ -62,38 +66,45 @@ LIBFT_AR		:=	$(LIBFT_DIR)/libft.a
 #RECIPES:
 all:	$(NAME)
 
+optim:
+	@$(MAKE) OPTIM=1 WITH_BONUS=1 all
+
+reoptim:
+	@$(MAKE) fclean
+	$(MAKE) optim
+
 clean:
-		$(RM) $(OBJ_DIR)
+	@$(RM) $(OBJ_DIR)
 
 fclean: clean
-		$(RM) $(NAME)
-		$(RM) $(LIBFT_AR)
+	@$(RM) $(NAME)
+	@$(RM) $(LIBFT_AR)
 
 re:
-		@$(MAKE) fclean
-		@$(MAKE) all
+	@$(MAKE) fclean
+	@$(MAKE) all
 
 #RULES:
 $(NAME) : $(LIBFT_OBJS) $(PRINTF_OBJS) $(GNL_OBJS)
-		$(AR) $(NAME) $^
+	@$(AR) $(NAME) $^
 
 $(LIBFT_AR): $(NAME)
-		@$(MAKE) bonus -j -C libft
-		mv $(LIBFT_AR) ./$(NAME)
+	@$(MAKE) bonus -j -C libft
+	mv $(LIBFT_AR) ./$(NAME)
 
 $(OBJ_DIR)/%.o: $(LIBFT_DIR)/%.c $(INC_FILES)
-		@mkdir -p $(OBJ_DIR)
-		gcc $(CFLAGS) $(INCLUDES) -c -o $@ $<
+	@mkdir -p $(OBJ_DIR)
+	gcc $(CFLAGS) $(INCLUDES) -c -o $@ $<
 
 $(OBJ_DIR)/%.o: $(PRINTF_SRC_DIR)/%.c $(INC_FILES)
-		@mkdir -p $(OBJ_DIR)
-		gcc $(CFLAGS) $(INCLUDES) -c -o $@ $<
+	@mkdir -p $(OBJ_DIR)
+	gcc $(CFLAGS) $(INCLUDES) -c -o $@ $<
 
 
 $(OBJ_DIR)/%.o: $(GNL_SRC_DIR)/%.c $(INC_FILES)
-		@mkdir -p $(OBJ_DIR)
-		gcc $(CFLAGS) $(INCLUDES) -c -D BUFFER_SIZE=10000 -o $@ $<
+	@mkdir -p $(OBJ_DIR)
+	gcc $(CFLAGS) $(INCLUDES) -c -D BUFFER_SIZE=10000 -o $@ $<
 
 #OTHER:
 .PHONY:
-		all clean fclean re
+	all clean fclean re

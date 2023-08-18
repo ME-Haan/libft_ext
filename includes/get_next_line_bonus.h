@@ -19,8 +19,6 @@
 
 // includes
 # include "libft.h"
-# include <stdlib.h>
-# include <unistd.h>
 
 // prototypes get_next_line_bonus.c
 char	*get_next_line(int fd);

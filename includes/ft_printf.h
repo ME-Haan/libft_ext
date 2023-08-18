@@ -6,7 +6,7 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/27 16:09:56 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/05/19 14:03:32 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/08/18 15:47:29 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 // includes
 # include "libft.h"
 # include <stdarg.h>
-# include <unistd.h>
-# include <stdlib.h>
 # include <stdint.h>
 
 // prototypes
