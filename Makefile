@@ -15,8 +15,8 @@ NAME := libft_ext.a
 RM := /bin/rm -rf
 
 #COMPILATION VARIABLES:
-CFLAGS ?= -Wall -Wextra -Werror
 AR := ar -crs
+CFLAGS ?= -Wall -Wextra -Werror
 
 # Include files and directories:
 INC_DIRS := ./includes
