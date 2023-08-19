@@ -11,12 +11,12 @@
 # **************************************************************************** #
 
 #GENERAL VARIABLES:
-NAME := libft_ext.a
-RM := /bin/rm -rf
+NAME	:= libft_ext.a
+RM		:= /bin/rm -rf
 
 #COMPILATION VARIABLES:
-AR := ar -crs
-CFLAGS ?= -Wall -Wextra -Werror
+AR		:= ar -crs
+CFLAGS	?= -Wall -Wextra -Werror
 
 ifdef OPTIM
 	CFLAGS += -O2 -flto -march=native
