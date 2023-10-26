@@ -94,16 +94,16 @@ $(LIBFT_AR): $(NAME)
 
 $(OBJ_DIR)/%.o: $(LIBFT_DIR)/%.c $(INC_FILES)
 	@mkdir -p $(OBJ_DIR)
-	gcc $(CFLAGS) $(INCLUDES) -c -o $@ $<
+	$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $<
 
 $(OBJ_DIR)/%.o: $(PRINTF_SRC_DIR)/%.c $(INC_FILES)
 	@mkdir -p $(OBJ_DIR)
-	gcc $(CFLAGS) $(INCLUDES) -c -o $@ $<
+	$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $<
 
 
 $(OBJ_DIR)/%.o: $(GNL_SRC_DIR)/%.c $(INC_FILES)
 	@mkdir -p $(OBJ_DIR)
-	gcc $(CFLAGS) $(INCLUDES) -c -D BUFFER_SIZE=10000 -o $@ $<
+	$(CC) $(CFLAGS) $(INCLUDES) -c -D BUFFER_SIZE=10000 -o $@ $<
 
 #OTHER:
 .PHONY:
